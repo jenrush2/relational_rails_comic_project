@@ -4,4 +4,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   get '/stores', to: 'stores#index'
+  get '/stores/:id', to: 'stores#show'
 end

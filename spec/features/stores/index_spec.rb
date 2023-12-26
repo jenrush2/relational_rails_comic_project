@@ -17,8 +17,6 @@ RSpec.describe "store index page", type: :feature do
 
         visit "/stores"
 
-        save_and_open_page
-
         expect(page).to have_content(store_1.city)
         expect(page).to have_content(store_2.city)
         expect(page).to have_content(store_3.city)
