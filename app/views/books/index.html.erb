@@ -1,0 +1,17 @@
+<body style="background-color:#e59ae2">
+
+<h1 style="text-align:center"> All Books </h1>
+<br>
+<br>
+
+<% @books.each do |book| %>
+    <h3> <%= book.name %> </h3>
+    <p> Series: <%= book.series %> </p>
+    <p> Volume: <%= book.volume %> </p>
+    <p> On Display: <%= book.on_display %> </p>
+
+<% end %>
+
+
+
+</body>
