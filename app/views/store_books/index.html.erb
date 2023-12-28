@@ -1,0 +1,17 @@
+<body style="background-color:#e59ae2">
+
+<h1 style="text-align:center"> <%= @store.city %> Location: All Books </h1>
+<br>
+<br>
+
+<% @books.each do |book| %>
+    <h3> <%= book.name %> </h3>
+    <h6> Series: <%= book.series %> </h6>
+    <h6> Volume: <%= book.volume %> </h6>
+    <h6> On Display: <%= book.on_display %> </h6>
+
+
+<% end %>
+
+
+</body>
