@@ -29,7 +29,7 @@ RSpec.describe "store index page", type: :feature do
     it "can see the city of each store" do
 
         visit "/stores"
-       
+        
         expect(page).to have_content(@store_1.city)
         expect(page).to have_content(@store_2.city)
         expect(page).to have_content(@store_3.city)
@@ -38,11 +38,18 @@ RSpec.describe "store index page", type: :feature do
 
     end
 
-    it 'orders the books by most recently created first' do
+    it 'orders the stores by most recently created first' do
         
         visit "/stores"
-
-        expect(@store_5.city).to have_sibling(@store_4.city, below: @store_5.city)
+        
+        expect(page.first('h3')).to have_content(@store_5.city)
+        expect(page.first('h3')).not_to have_content(@store_4.city)
+        expect(page.find('h3:last')).to have_content(@store_1.city)
+        
+        expect('Crested Butte').to appear_before('Colorado Springs')
+        expect('Denver').to appear_before('Aurora')
+        
+        
 
 
     end

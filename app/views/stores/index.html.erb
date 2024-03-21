@@ -4,8 +4,9 @@
 <br>
 <br>
 
-<% @stores.each do |store| %>
+<% @stores_most_recent.each do |store| %>
     <h3> <%= store.city %> </h3>
+    <p> Date Created: <%= store.created_at %> </p>
 
 <% end %>
 
