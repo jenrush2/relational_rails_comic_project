@@ -31,11 +31,13 @@ RSpec.describe "the stores show page" do
 
     it 'displays the store income rank' do
         visit "/stores/#{@store_2.id}"
-        save_and_open_page
+        
         expect(page).to have_content("Income Rank: #{@store_2.income_rank}")
     end
 
-    
+    xit 'displays the number of books associated with the store' do
+        visit "/stores/#{@store_2.id}"
+    end
 
 
 end
