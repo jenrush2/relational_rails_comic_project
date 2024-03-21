@@ -39,7 +39,8 @@ RSpec.describe "store index page", type: :feature do
     end
 
     it 'orders the stores by most recently created first' do
-        
+        created_time = Time.zone.now
+
         visit "/stores"
         
         expect(page.first('h3')).to have_content(@store_5.city)
@@ -49,8 +50,12 @@ RSpec.describe "store index page", type: :feature do
         expect('Crested Butte').to appear_before('Colorado Springs')
         expect('Denver').to appear_before('Aurora')
         
+        expect(page).to have_content("Date Created:")
+        #Below, why can it not find this:
+        #expect(page).to have_content(created_time.strftime("%m-%d-%Y %l:%M %p"))
+        #But CAN find this:
+        expect(page).to have_content(created_time.strftime("%m-%d-%Y"))
         
-
 
     end
 

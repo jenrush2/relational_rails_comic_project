@@ -35,5 +35,7 @@ RSpec.describe "the stores show page" do
         expect(page).to have_content("Income Rank: #{@store_2.income_rank}")
     end
 
+    
+
 
 end

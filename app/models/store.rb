@@ -5,4 +5,8 @@ class Store < ApplicationRecord
         self.order(created_at: :desc)
     end
 
+    def created_formatted
+        created_at.strftime("%m-%d-%Y %l:%M %p")
+    end
+
 end
