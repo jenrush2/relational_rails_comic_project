@@ -52,5 +52,25 @@ RSpec.describe 'books show page', type: :feature do
         expect(page).to have_content(@book_2.on_display)
         expect(page).to have_no_content(@book_1.on_display)
     end
+
+    it 'has a link at the top of the page to the Store Index' do
+        visit "/books/#{@book_6.id}"
+
+        expect(page).to have_link('Go to Stores', href: '/stores')
+
+        click_link(href: '/stores')
+
+        expect(page).to have_current_path('/stores')
+    end
+
+    it 'has a link at the top of the page to the Book Index' do
+        visit "/books/#{@book_6.id}"
+      
+        expect(page).to have_link('Go to Books', href: '/books')
+
+        click_link(href: '/books')
+
+        expect(page).to have_current_path('/books')
+    end
 end
 
