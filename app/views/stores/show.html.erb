@@ -1,0 +1,17 @@
+<body style="background-color:#e59ae2">
+
+<p><a href="/stores" style="margin-right: 50px;"> Go to Stores </a>     <a href="/books"> Go to Books </a> </p>
+
+
+<h1 style="text-align:center"> <%= @store.city %> Location </h1>
+<br>
+
+<h3> Open: <%= @store.open %> </h3>
+
+<h3> Income Rank: <%= @store.income_rank %> </h3>
+
+<h3> Number of books: <%= @store.book_count %> </h3>
+
+<%= link_to "#{@store.city} Store Books", "/stores/#{@store.id}/books" %>
+
+</body>
