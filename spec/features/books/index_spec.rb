@@ -86,5 +86,16 @@ RSpec.describe 'index page', type: :feature do
         expect(page).to have_content(@book_8.on_display)
     end
 
+    it 'has a link at the top of the page that takes me to Store Index' do
+        visit '/books'
+        
+        expect(page).to have_link('Go to Stores', href: '/stores')
+
+        click_link(href: '/stores')
+
+        expect(page).to have_current_path('/stores')
+
+    end
+
 end
 
