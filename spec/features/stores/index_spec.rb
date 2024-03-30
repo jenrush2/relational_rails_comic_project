@@ -1,19 +1,7 @@
 require 'rails_helper'
 
-# User Story 1, Parent Index 
-
-# For each parent table
-# As a visitor
-# When I visit '/parents'
-# Then I see the name of each parent record in the system
 
 
-# User Story 6, Parent Index sorted by Most Recently Created 
-
-# As a visitor
-# When I visit the parent index,
-# I see that records are ordered by most recently created first
-# And next to each of the records I see when it was created
 
 RSpec.describe "store index page", type: :feature do
     before(:each) do
@@ -39,7 +27,6 @@ RSpec.describe "store index page", type: :feature do
     end
 
     it 'orders the stores by most recently created first' do
-        created_time = Time.zone.now
 
         visit "/stores"
         
@@ -50,15 +37,18 @@ RSpec.describe "store index page", type: :feature do
         expect('Crested Butte').to appear_before('Colorado Springs')
         expect('Denver').to appear_before('Aurora')
         
-        expect(page).to have_content("Date Created:")
-        #Below, why can it not find this:
-        #expect(page).to have_content(created_time.strftime("%m-%d-%Y %l:%M %p"))
-        #But CAN find this:
-        expect(page).to have_content(created_time.strftime("%m-%d-%Y"))
-        
-
     end
 
-    it 'lists when each book record was created next to that record'
+    it 'lists when each record was created next to that record' do
+        created_time = Time.zone.now
+
+        visit "/stores"
+
+        #Below, why can it not find these:
+        #expect(page).to have_content(created_time.strftime("%m-%d-%Y %l:%M %p"))
+        #expect(page).to have_content("Date Created: #{created_time.strftime('%m-%d-%Y %l:%M %p')}")
+        #But CAN find this:
+        expect(page).to have_content("Date Created: #{created_time.strftime('%m-%d-%Y')}")
+    end
 
 end
