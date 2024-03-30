@@ -30,7 +30,7 @@ RSpec.describe 'index page', type: :feature do
     it 'displays the name of the book' do
 
         visit '/books'
-        save_and_open_page
+        
 
         expect(page).to have_content(@book_1.name)
         expect(page).to have_content(@book_2.name)
@@ -43,7 +43,7 @@ RSpec.describe 'index page', type: :feature do
 
     end
 
-    xit 'displays the series of the book' do
+    it 'displays the series of the book' do
 
         visit '/books'
 
@@ -58,7 +58,7 @@ RSpec.describe 'index page', type: :feature do
         
     end
 
-    xit 'displays the volume of the book' do
+    it 'displays the volume of the book' do
 
         visit '/books'
 
@@ -72,7 +72,7 @@ RSpec.describe 'index page', type: :feature do
         expect(page).to have_content(@book_8.volume)
     end
 
-    xit 'displays the on_display status of the book' do
+    it 'displays the on_display status of the book' do
 
         visit '/books'
 
