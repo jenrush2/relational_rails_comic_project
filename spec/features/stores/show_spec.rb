@@ -78,8 +78,6 @@ RSpec.describe "the stores show page" do
     it "has a link to this store's book page" do
         visit "/stores/#{@store_1.id}"
 
-        save_and_open_page
-
         expect(page).to have_link("#{@store_1.city} Store Books", href: "/stores/#{@store_1.id}/books")
 
         click_link("#{@store_1.city} Store Books")
