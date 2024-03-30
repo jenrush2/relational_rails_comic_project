@@ -64,7 +64,7 @@ RSpec.describe 'Store books index', type: :feature do
 
     it 'has the on_display status of all books in that store' do
         visit "/stores/#{@store_1.id}/books"
-        save_and_open_page
+        
         expect(page).to have_content(@book_1.on_display)
         expect(page).to have_content(@book_2.on_display)
         expect(page).to have_content(@book_3.on_display)
