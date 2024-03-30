@@ -9,4 +9,8 @@ class Store < ApplicationRecord
         created_at.strftime("%m-%d-%Y %l:%M %p")
     end
 
+    def book_count
+        books.count
+    end
+
 end
