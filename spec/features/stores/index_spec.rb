@@ -51,4 +51,14 @@ RSpec.describe "store index page", type: :feature do
         expect(page).to have_content("Date Created: #{created_time.strftime('%m-%d-%Y')}")
     end
 
+    it 'has a link at the top of the page to the Book Index' do
+        visit "/stores"
+      
+        expect(page).to have_link('Go to Books', href: '/books')
+
+        click_link(href: '/books')
+
+        expect(page).to have_current_path('/books')
+    end
+
 end
