@@ -55,5 +55,26 @@ RSpec.describe "the stores show page" do
         expect(page).to have_content("Number of books: 3")
     end
 
+    it 'has a link at the top of the page to the Store Index' do
+        visit "/stores/#{@store_2.id}"
+
+        expect(page).to have_link('Go to Stores', href: '/stores')
+
+        click_link(href: '/stores')
+
+        expect(page).to have_current_path('/stores')
+    end
+
+    it 'has a link at the top of the page to the Book Index' do
+        visit "/stores/#{@store_1.id}"
+      
+        expect(page).to have_link('Go to Books', href: '/books')
+
+        click_link(href: '/books')
+
+        expect(page).to have_current_path('/books')
+    end
+
+
 
 end
