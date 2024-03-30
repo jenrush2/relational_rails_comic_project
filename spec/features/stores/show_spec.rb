@@ -75,6 +75,20 @@ RSpec.describe "the stores show page" do
         expect(page).to have_current_path('/books')
     end
 
+    it "has a link to this store's book page" do
+        visit "/stores/#{@store_1.id}"
+
+        save_and_open_page
+
+        expect(page).to have_link("#{@store_1.city} Store Books", href: "/stores/#{@store_1.id}/books")
+
+        click_link("#{@store_1.city} Store Books")
+
+        expect(page).to have_current_path("/stores/#{@store_1.id}/books")
+
+    end
+    
+
 
 
 end

@@ -12,4 +12,6 @@
 
 <h3> Number of books: <%= @store.book_count %> </h3>
 
+<%= link_to "#{@store.city} Store Books", "/stores/#{@store.id}/books" %>
+
 </body>
