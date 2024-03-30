@@ -71,4 +71,24 @@ RSpec.describe 'Store books index', type: :feature do
 
     end
 
+    it 'has a link at the top of the page to the Store Index' do
+        visit "/stores/#{@store_1.id}/books"
+
+        expect(page).to have_link('Go to Stores', href: '/stores')
+
+        click_link(href: '/stores')
+
+        expect(page).to have_current_path('/stores')
+    end
+
+    it 'has a link at the top of the page to the Book Index' do
+        visit "/stores/#{@store_1.id}/books"
+      
+        expect(page).to have_link('Go to Books', href: '/books')
+
+        click_link(href: '/books')
+
+        expect(page).to have_current_path('/books')
+    end
+
 end
