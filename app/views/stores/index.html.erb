@@ -7,8 +7,9 @@
 <br>
 
 <% @stores_most_recent.each do |store| %>
-    <h3> <%= store.city %> </h3>
+    <h3> <%= link_to "Go to #{store.city} Store", "/stores/#{store.id}" %> </h3>
     <p> Date Created: <%= store.created_formatted %> </p>
+    
 
 <% end %>
 
