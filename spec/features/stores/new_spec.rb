@@ -17,7 +17,6 @@ RSpec.describe 'New Store' do
                 select "Closed", :from => 'Open'
                 fill_in 'income_rank', with: '0'
                 click_button('Create Store')
-
                 expect(current_path).to eq('/stores')
                 expect(page).to have_content('Salida')
                 expect(page).to have_content('0')

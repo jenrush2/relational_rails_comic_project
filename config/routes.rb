@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/books', to: 'books#index'
   get '/books/:id', to: 'books#show'
   get '/stores/:store_id/books', to: 'store_books#index'
+  post '/stores', to: 'stores#create'
   
   
 end
