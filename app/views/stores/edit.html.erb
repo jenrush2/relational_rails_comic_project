@@ -1,0 +1,16 @@
+<h1 style="text-align:center"> Edit <%= "#{@store.city}" %> Store </h1>
+
+<%= form_with url: "/stores/#{@store.id}", method: :patch, local: true do |form| %>
+<%= form.label :city %>
+<%= form.text_field :city, value: @store.city %>
+<br>
+<%= form.label :open %>
+<%= form.select :open, [['Open', true], ['Closed', false]], :selected => @store.open %>
+<br>
+<%= form.label :income_rank %>
+<%= form.text_field :income_rank, value: @store.income_rank %>
+<br>
+<br>
+<%= form.submit 'Update Store' %>
+
+<% end %>

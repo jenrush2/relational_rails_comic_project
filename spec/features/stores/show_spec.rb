@@ -1,12 +1,5 @@
 require 'rails_helper'
 
-# User Story 2, Parent Show 
-
-# As a visitor
-# When I visit '/parents/:id'
-# Then I see the parent with that id including the parent's attributes
-# (data from each column that is on the parent table)
-
 RSpec.describe "the stores show page" do 
     before(:each) do
         @store_1 = Store.create!(city: "Aurora", open: true, income_rank: 2)
@@ -84,6 +77,14 @@ RSpec.describe "the stores show page" do
 
         expect(page).to have_current_path("/stores/#{@store_1.id}/books")
 
+    end
+
+    it "has a link to update a store" do
+        visit "/stores/#{@store_1.id}"
+
+        click_button "Update Store"
+
+        expect(current_path).to eq("/stores/#{@store_1.id}/edit")
     end
     
 
