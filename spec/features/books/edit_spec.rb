@@ -29,4 +29,51 @@ RSpec.describe 'Update Book' do
         expect(current_path).to eq("/books/#{@book_8.id}/edit")
     end
 
+    it 'can update a book name' do
+        visit "/books/#{@book_8.id}/edit"
+        
+        fill_in 'Name', with: 'The Chain'
+
+        click_button 'Update Book'
+
+        expect(current_path).to eq("/books/#{@book_8.id}")
+        expect(page).to have_content('The Chain')
+        expect(page).to have_content('Buffy: Season 8')
+        expect(page).to have_content('false')
+        
+    end
+
+    it 'can update a book series' do
+        visit "/books/#{@book_8.id}/edit"
+
+        fill_in 'Series', with: 'Pizza'
+
+        click_button 'Update Book'
+
+        expect(current_path).to eq("/books/#{@book_8.id}")
+        expect(page).to have_content('Pizza')
+    end
+
+    it 'can update a book on display status' do
+        visit "/books/#{@book_8.id}/edit"
+
+        select 'Yes', :from => 'on_display'
+
+        click_button 'Update Book'
+
+        expect(current_path).to eq("/books/#{@book_8.id}")
+        expect(page).to have_content('true')
+    end
+
+    it 'can update a book volume' do
+        visit "/books/#{@book_8.id}/edit"
+
+        fill_in 'Volume', with: '13'
+
+        click_button 'Update Book'
+
+        expect(current_path).to eq("/books/#{@book_8.id}")
+        expect(page).to have_content('13')
+    end
+
 end

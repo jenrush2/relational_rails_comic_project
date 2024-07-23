@@ -26,7 +26,7 @@ RSpec.describe Store, type: :model do
         
         
         describe '#sort_by_most_recent' do
-            xit 'sorts by most recent' do
+            it 'sorts by most recent' do
                 #won't pass because it has 11 stores as an output 
                 #repeated stores plus Salida, which I have only created
                 #in the stores/new spec AND in development (right word?)

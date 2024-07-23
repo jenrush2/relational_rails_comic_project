@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get '/stores/:store_id/books/new', to: 'store_books#new'
   post '/stores/:store_id/books', to: 'store_books#create'
   get '/books/:book_id/edit', to: 'books#edit'
+  patch '/books/:book_id', to: 'books#update'
   
   
 end
