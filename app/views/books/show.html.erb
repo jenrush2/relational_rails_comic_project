@@ -9,4 +9,10 @@
 <h3> Volume: <%= @book.volume %> </h3>
 <h3> On Display: <%= @book.on_display %> </h3>
 
+<br>
+<br>
+
+<%= button_to "Update Book", "/books/#{@book.id}/edit", method: :get %>
+
+
 </body>
