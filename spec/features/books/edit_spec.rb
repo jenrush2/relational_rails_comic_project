@@ -76,4 +76,70 @@ RSpec.describe 'Update Book' do
         expect(page).to have_content('13')
     end
 
+    it 'has a link on the book index page to edit each book' do
+        #book 2 test
+        visit '/books'
+
+        click_button "Edit #{@book_2.name}"
+
+        expect(current_path).to eq("/books/#{@book_2.id}/edit")
+
+        #book 3 test
+        visit '/books'
+
+        click_button "Edit #{@book_3.name}"
+
+        expect(current_path).to eq("/books/#{@book_3.id}/edit")
+
+        #book 7 test
+        visit '/books'
+
+        click_button "Edit #{@book_7.name}"
+
+        expect(current_path).to eq("/books/#{@book_7.id}/edit")
+
+
+    end
+
+    it 'has a link on the store/book index page to edit each book' do
+        #store 1
+        visit "/stores/#{@store_1.id}/books"
+        #book 1
+        click_button "Edit #{@book_1.name}"
+
+        expect(current_path).to eq("/books/#{@book_1.id}/edit")
+
+        #store 1
+        visit "/stores/#{@store_1.id}/books"
+        #book 2
+        click_button "Edit #{@book_2.name}"
+
+        expect(current_path).to eq("/books/#{@book_2.id}/edit")
+
+        #store 3
+        visit "/stores/#{@store_3.id}/books"
+        #book 6
+        click_button "Edit #{@book_6.name}"
+
+        expect(current_path).to eq("/books/#{@book_6.id}/edit")
+    end
+
+
+    it 'has a link on the fullindex page to edit each book' do
+        #book 7
+        visit '/books/all'
+
+        click_button "Edit #{@book_7.name}"
+
+        expect(current_path).to eq("/books/#{@book_7.id}/edit")
+        
+        #book 8
+        visit '/books/all'
+
+        click_button "Edit #{@book_8.name}"
+
+        expect(current_path).to eq("/books/#{@book_8.id}/edit")
+    end
+
+
 end
