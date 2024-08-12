@@ -44,11 +44,9 @@ RSpec.describe "store index page", type: :feature do
 
         visit "/stores"
 
-        #Below, why can it not find these:
-        #expect(page).to have_content(created_time.strftime("%m-%d-%Y %l:%M %p"))
-        #expect(page).to have_content("Date Created: #{created_time.strftime('%m-%d-%Y %l:%M %p')}")
-        #But CAN find this:
         expect(page).to have_content("Date Created: #{created_time.strftime('%m-%d-%Y')}")
+        expect(page).to have_content("Date Created: #{created_time.strftime('%m-%d-%Y%l:%M %p')}")
+        
     end
 
     it 'has a link at the top of the page to the Book Index' do

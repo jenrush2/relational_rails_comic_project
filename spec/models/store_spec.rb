@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Store, type: :model do
     it {should have_many :books}
 
+
     before(:each) do
 
         @store_1 = Store.create!(city: "Aurora", open: true, income_rank: 2)
@@ -27,12 +28,9 @@ RSpec.describe Store, type: :model do
         
         describe '#sort_by_most_recent' do
             it 'sorts by most recent' do
-                #won't pass because it has 11 stores as an output 
-                #repeated stores plus Salida, which I have only created
-                #in the stores/new spec AND in development (right word?)
-                #through the server running
-                expect(Store.sort_by_most_recent.to_a).to eq([@store_5, @store_4, @store_3, @store_2, @store_1])
-                #also would love to know why I needed .to_a and Turing's practice examples didn't
+
+                expect(Store.sort_by_most_recent).to eq([@store_5, @store_4, @store_3, @store_2, @store_1])
+            
             end
         end
 
