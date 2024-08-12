@@ -44,11 +44,9 @@ RSpec.describe "store index page", type: :feature do
 
         visit "/stores"
 
-        #Below, why can it not find these:
-        #expect(page).to have_content(created_time.strftime("%m-%d-%Y %l:%M %p"))
-        #expect(page).to have_content("Date Created: #{created_time.strftime('%m-%d-%Y %l:%M %p')}")
-        #But CAN find this:
         expect(page).to have_content("Date Created: #{created_time.strftime('%m-%d-%Y')}")
+        expect(page).to have_content("Date Created: #{created_time.strftime('%m-%d-%Y%l:%M %p')}")
+        
     end
 
     it 'has a link at the top of the page to the Book Index' do
@@ -59,6 +57,43 @@ RSpec.describe "store index page", type: :feature do
         click_link(href: '/books')
 
         expect(page).to have_current_path('/books')
+    end
+
+    it 'has a link next to each store to edit' do
+        #store 1
+        visit "/stores"
+    
+        click_button "Update #{@store_1.city} Store"
+
+        expect(page).to have_current_path("/stores/#{@store_1.id}/edit")
+
+        #store 2
+        visit "/stores"
+
+        click_button "Update #{@store_2.city} Store"
+
+        expect(page).to have_current_path("/stores/#{@store_2.id}/edit")
+
+        #store 3
+        visit "/stores"
+        
+        click_button "Update #{@store_3.city} Store"
+
+        expect(page).to have_current_path("/stores/#{@store_3.id}/edit")
+
+        #store 4
+        visit "/stores"
+        
+        click_button "Update #{@store_4.city} Store"
+
+        expect(page).to have_current_path("/stores/#{@store_4.id}/edit")
+
+        #store 5
+        visit "/stores"
+        
+        click_button "Update #{@store_5.city} Store"
+
+        expect(page).to have_current_path("/stores/#{@store_5.id}/edit")
     end
 
 end

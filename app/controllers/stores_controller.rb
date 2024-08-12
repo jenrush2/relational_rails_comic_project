@@ -4,8 +4,30 @@ class StoresController < ApplicationController
     end
 
     def show
-        @store = Store.find(params[:id])
-        
+        @store = Store.find(params[:id]) 
     end
+
+    def new
+    end
+
+    def create
+        Store.create(store_params)
+        redirect_to "/stores"
+    end
+
+    def edit
+        @store = Store.find(params[:store_id])
+    end
+
+    def update
+        store = Store.find(params[:store_id])
+        store.update(store_params)
+        redirect_to "/stores/#{store.id}"
+    end
+
+    private
+        def store_params
+            params.permit(:city, :open, :income_rank)
+        end
 
 end

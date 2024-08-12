@@ -1,0 +1,25 @@
+<body style="background-color:#e59ae2">
+
+<h1 style="text-align:center"> New Store </h1>
+<br>
+<%= form_with url: '/stores', method: :post, local: true do |form| %>
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+    <br>
+    <%= form.label :open %>
+    <%= form.select :open, [['Open', true], ['Closed', false]] %>
+    <br>
+    <%= form.label :income_rank %>
+    <%= form.text_field :income_rank %>
+    <br>
+    <br>
+    <%= form.submit 'Create Store' %>
+
+<% end %>
+
+<br>
+<br>
+
+<a href="/stores"> Back to All Stores </a>
+
+</body>

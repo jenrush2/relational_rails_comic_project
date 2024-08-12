@@ -98,5 +98,4 @@ RSpec::Matchers.define :appear_before do |later_content|
   end
 end
 
-
 end

@@ -1,11 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Store, type: :model do
-    it {should have_many :books}
-
-
+RSpec.describe 'New Book in a Store' do
     before(:each) do
-
         @store_1 = Store.create!(city: "Aurora", open: true, income_rank: 2)
         @store_2 = Store.create!(city: "Denver", open: true, income_rank: 1)
         @store_3 = Store.create!(city: "Castle Rock", open: false, income_rank: 5)
@@ -20,30 +16,29 @@ RSpec.describe Store, type: :model do
         @book_6 = @store_3.books.create!(name: "The Long Way Home: Part IV", series: "Buffy: Season 8", volume: 4, on_display: true)
         @book_7 = @store_4.books.create!(name: "The Gathering Storm", series: "Dark Knights of Steel", volume: 3, on_display: true)
         @book_8 = @store_5.books.create!(name: "The Chain", series: "Buffy: Season 8", volume: 5, on_display: false)
-        
     end
 
-    describe 'class methods' do
-        
-        
-        describe '#sort_by_most_recent' do
-            it 'sorts by most recent' do
+    it 'has a create book link to new page' do
+        visit "/stores/#{@store_3.id}/books"
 
-                expect(Store.sort_by_most_recent).to eq([@store_5, @store_4, @store_3, @store_2, @store_1])
-            
-            end
-        end
+        click_button 'Add New Book'
 
+        expect(current_path).to eq("/stores/#{@store_3.id}/books/new")
     end
 
-    describe 'instance methods' do
+    it 'can create a new book' do
+        visit "/stores/#{@store_3.id}/books/new"
+        
+        fill_in "Name", with: "No More Lonely Knights"
+        fill_in "Series", with: "Dark Knights of Steel"
+        fill_in "Volume", with: 4
+        select "No", :from => 'On display'
 
-        describe "count the number of books in a store" do
-            it "counts the number of books in a store" do
-                expect(@store_1.city).to eq("Aurora")
-                expect(@store_1.book_count).to eq(3)
-            end
-        end
+        click_button('Create Book')
+
+        expect(current_path).to eq("/stores/#{@store_3.id}/books")
+        expect(page).to have_content("No More Lonely Knights")
+
     end
 
 end

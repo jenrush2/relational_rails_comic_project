@@ -1,0 +1,24 @@
+<body style="background-color:#e59ae2">
+
+<h1 style="text-align:center"> Add Book to <%= "#{@store.city}" %> Location </h1>
+
+<br>
+
+<%= form_with url: "/stores/#{@store.id}/books", method: :post, local: true do |form| %>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+    <br>
+    <%= form.label :series %>
+    <%= form.text_field :series %>
+    <br>
+    <%= form.label :volume %>
+    <%= form.text_field :volume %>
+    <br>
+    <%= form.label :on_display %>
+    <%= form.select :on_display, [['Yes', true], ['No', false]] %>
+    <br>
+    <br>
+    <%= form.submit 'Create Book' %>
+<% end %>
+
+</body>
