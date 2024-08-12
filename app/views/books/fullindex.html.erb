@@ -2,11 +2,11 @@
 
 <a href="/stores"> Go to Stores </a>
 
-<h1 style="text-align:center"> All Books Currently On Display </h1>
+<h1 style="text-align:center"> All Books </h1>
 <br>
 <br>
 
-<% @books_on_display.each do |book| %>
+<% @books.each do |book| %>
     <h3> <%= link_to "#{book.name}", "/books/#{book.id}" %> </h3>
     <p> Series: <%= book.series %> </p>
     <p> Volume: <%= book.volume %> </p>
@@ -17,7 +17,7 @@
 <br>
 <br>
 
-<a href="/books/all"> Show All Books </a>
+<a href="/books"> Show Books on Display Only </a>
 
 
 

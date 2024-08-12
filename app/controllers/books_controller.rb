@@ -1,6 +1,9 @@
 class BooksController < ApplicationController
     def index
-       
+        @books_on_display = Book.on_display_only
+    end
+
+    def fullindex
         @books = Book.all
     end
 

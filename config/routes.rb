@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get '/stores/new', to: 'stores#new'
   get '/stores/:id', to: 'stores#show'
   get '/books', to: 'books#index'
+  #same issue where I can't put line 14 before line 13
+  get '/books/all', to: 'books#fullindex'
   get '/books/:id', to: 'books#show'
   get '/stores/:store_id/books', to: 'store_books#index'
   post '/stores', to: 'stores#create'
@@ -18,6 +20,7 @@ Rails.application.routes.draw do
   post '/stores/:store_id/books', to: 'store_books#create'
   get '/books/:book_id/edit', to: 'books#edit'
   patch '/books/:book_id', to: 'books#update'
+  
   
   
 end
