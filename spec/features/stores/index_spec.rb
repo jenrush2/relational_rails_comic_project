@@ -59,4 +59,41 @@ RSpec.describe "store index page", type: :feature do
         expect(page).to have_current_path('/books')
     end
 
+    it 'has a link next to each store to edit' do
+        #store 1
+        visit "/stores"
+    
+        click_button "Update #{@store_1.city} Store"
+
+        expect(page).to have_current_path("/stores/#{@store_1.id}/edit")
+
+        #store 2
+        visit "/stores"
+
+        click_button "Update #{@store_2.city} Store"
+
+        expect(page).to have_current_path("/stores/#{@store_2.id}/edit")
+
+        #store 3
+        visit "/stores"
+        
+        click_button "Update #{@store_3.city} Store"
+
+        expect(page).to have_current_path("/stores/#{@store_3.id}/edit")
+
+        #store 4
+        visit "/stores"
+        
+        click_button "Update #{@store_4.city} Store"
+
+        expect(page).to have_current_path("/stores/#{@store_4.id}/edit")
+
+        #store 5
+        visit "/stores"
+        
+        click_button "Update #{@store_5.city} Store"
+
+        expect(page).to have_current_path("/stores/#{@store_5.id}/edit")
+    end
+
 end
