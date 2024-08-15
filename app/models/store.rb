@@ -1,5 +1,5 @@
 class Store < ApplicationRecord
-    has_many :books
+    has_many :books, dependent: :destroy
 
     def self.sort_by_most_recent
         Store.order(created_at: :desc)

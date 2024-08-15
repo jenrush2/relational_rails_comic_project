@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   post '/stores/:store_id/books', to: 'store_books#create'
   get '/books/:book_id/edit', to: 'books#edit'
   patch '/books/:book_id', to: 'books#update'
+  delete '/stores/:store_id', to: 'stores#destroy'
   
   
   

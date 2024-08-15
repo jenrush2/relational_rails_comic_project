@@ -13,6 +13,7 @@
 <h3> Number of books: <%= @store.book_count %> </h3>
 
 <%= button_to "Update Store", "/stores/#{@store.id}/edit", method: :get %>
+<%= button_to "Delete #{@store.city} Store", "/stores/#{@store.id}", method: :delete %> 
 
 <br>
 <br>
