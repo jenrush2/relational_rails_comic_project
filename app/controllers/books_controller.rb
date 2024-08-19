@@ -24,8 +24,13 @@ class BooksController < ApplicationController
 
     def destroy
         book = Book.find(params[:book_id])
+        before_deletion_book_display_status = book.on_display
         book.destroy
-        redirect_to '/books'
+        if before_deletion_book_display_status == true
+            redirect_to '/books'
+        else
+            redirect_to '/books/all'
+        end
     end
 
     private

@@ -2,13 +2,13 @@ require 'rails_helper'
 
 RSpec.describe 'delete a store' do
     before(:each) do
-        @store_1 = Store.create!(city: "Auroa", open: false, income_rank: 2)
+        @store_1 = Store.create!(city: "Aurora", open: false, income_rank: 2)
         @store_2 = Store.create!(city: "Denver", open: true, income_rank: 1)
         @store_3 = Store.create!(city: "Castle Rock", open: false, income_rank: 5)
         @store_4 = Store.create!(city: "Colorado Springs", open: true, income_rank: 3)
         @store_5 = Store.create!(city: "Crested Butte", open: false, income_rank: 4)
 
-        @book_1 = @store_1.books.create!(name: "In the Beginning", series: "Dark Knights of Steel", volume: 1, on_display: false)
+        @book_1 = @store_1.books.create!(name: "In the Beginning", series: "Dark Knights of Steel", volume: 1, on_display: true)
         @book_2 = @store_1.books.create!(name: "Distant Thunder", series: "Dark Knights of Steel", volume: 2, on_display: false)
         @book_3 = @store_1.books.create!(name: "The Long Way Home: Part I", series: "Buffy: Season 8", volume: 1, on_display: true)
         @book_4 = @store_2.books.create!(name: "A different book", series: "Buffy: Season 8", volume: 2, on_display: true)
@@ -36,4 +36,37 @@ RSpec.describe 'delete a store' do
         expect(page).to_not have_content('A different book')
 
     end
+
+    it 'can delete a store from the store index page' do 
+        stores = Store.all
+        stores.each do |store|
+            visit '/stores'
+            expect(page).to have_content("#{store.city}")
+            click_button "Delete #{store.city}"
+            expect(current_path).to eq('/stores')
+            expect(page).not_to have_content("#{store.city}")
+        end
+        
+        
+        # deleting one store works, but I switched to the code above because
+        #the instructions asked for there to be a delete button next to every
+        #store. The only way to check every store without one at a time
+        #would be an each block...but is it best practice to have that  
+        #much code inside a test? Is the simplest test better because 
+        #you're less likely to have errors in your code that cause the test 
+        #to pass or fail incorrectly?
+        
+        #code for a single test below:
+        # visit '/stores'
+        
+        # expect(page).to have_content('Castle Rock')
+
+        # click_button "Delete #{@store_3.city}"
+
+        # expect(current_path).to eq('/stores')
+
+        # expect(page).not_to have_content('Castle Rock')
+
+    end
+
 end

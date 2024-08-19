@@ -12,6 +12,7 @@
     <p> Volume: <%= book.volume %> </p>
     <p> On Display: <%= book.on_display %> </p>
     <p> <%= button_to "Edit #{book.name}", "/books/#{book.id}/edit", method: :get %> </p>
+    <p> <%= button_to "Delete #{book.name}", "/books/#{book.id}", method: :delete %> </p>
 
 <% end %>
 

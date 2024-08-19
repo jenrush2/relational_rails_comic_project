@@ -33,4 +33,32 @@ RSpec.describe 'Delete Book' do
         expect(page).not_to have_content('Distant Thunder')
 
     end
+
+    it 'can delete a book from the book index page' do
+        #book 7
+        visit '/books'
+
+        expect(page).to have_content('The Gathering Storm')
+
+        click_button "Delete #{@book_7.name}"
+
+        expect(current_path).to eq('/books')
+
+        expect(page).not_to have_content('The Gathering Storm')
+    end
+
+    it 'can delete a book from the all books index page' do
+        #book 1
+        visit '/books/all'
+
+        expect(page).to have_content('In the Beginning')
+
+        click_button "Delete #{@book_1.name}"
+
+        expect(current_path).to eq('/books/all')
+
+        expect(page).not_to have_content('In the Beginning')
+    end
+
+
 end
