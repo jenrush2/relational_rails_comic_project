@@ -13,6 +13,6 @@
 <br>
 
 <%= button_to "Update Book", "/books/#{@book.id}/edit", method: :get %>
-
+<%= button_to "Delete Book", "/books/#{@book.id}", method: :delete %>
 
 </body>

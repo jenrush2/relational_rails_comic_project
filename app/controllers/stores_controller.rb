@@ -25,6 +25,12 @@ class StoresController < ApplicationController
         redirect_to "/stores/#{store.id}"
     end
 
+    def destroy
+        store = Store.find(params[:store_id])
+        store.destroy
+        redirect_to '/stores'
+    end
+
     private
         def store_params
             params.permit(:city, :open, :income_rank)

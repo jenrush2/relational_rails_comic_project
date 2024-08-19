@@ -30,9 +30,9 @@ RSpec.describe "store index page", type: :feature do
 
         visit "/stores"
         
-        expect(page.first('h3')).to have_content(@store_5.city)
-        expect(page.first('h3')).not_to have_content(@store_4.city)
-        expect(page.find('h3:last')).to have_content(@store_1.city)
+        expect(page.first('h2')).to have_content(@store_5.city)
+        expect(page.first('h2')).not_to have_content(@store_4.city)
+        expect(page.find('h2:last')).to have_content(@store_1.city)
         
         expect('Crested Butte').to appear_before('Colorado Springs')
         expect('Denver').to appear_before('Aurora')

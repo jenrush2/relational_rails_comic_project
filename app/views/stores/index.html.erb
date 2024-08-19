@@ -7,10 +7,10 @@
 <br>
 
 <% @stores_most_recent.each do |store| %>
-    <h3> <%= link_to "Go to #{store.city} Store", "/stores/#{store.id}" %> </h3>
+    <h2> <%= link_to "Go to #{store.city} Store", "/stores/#{store.id}" %> </h3>
     <p> Date Created: <%= store.created_formatted %> </p>
     <%= button_to "Update #{store.city} Store", "/stores/#{store.id}/edit", method: :get %>
-
+    <%= button_to "Delete #{store.city} Store", "/stores/#{store.id}", method: :delete %>
 <% end %>
 
 <br>
