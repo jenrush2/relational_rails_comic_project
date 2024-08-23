@@ -13,4 +13,8 @@ class Store < ApplicationRecord
         books.count
     end
 
+    def self.sort_by_number_of_books
+        Store.all.sort{|a,b| b.books.length <=> a.books.length}
+    end
+
 end
