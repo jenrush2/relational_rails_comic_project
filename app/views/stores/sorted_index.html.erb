@@ -2,19 +2,22 @@
 
 <a href="/books"> Go to Books </a>
 
-<h1 style="text-align:center"> All Stores </h1>
+<h1 style="text-align:center"> Stores By Number of Books </h1>
 <br>
 <br>
 
-<% @stores_most_recent.each do |store| %>
+<% @stores_by_books.each do |store| %>
     <h2> <%= link_to "Go to #{store.city} Store", "/stores/#{store.id}" %> </h3>
+    <h3> Number of Books: <%= store.book_count %> </h3>
     <p> Date Created: <%= store.created_formatted %> </p>
     <%= button_to "Update #{store.city} Store", "/stores/#{store.id}/edit", method: :get %>
     <%= button_to "Delete #{store.city} Store", "/stores/#{store.id}", method: :delete %>
 <% end %>
 
 <br>
+<br>
+<br>
 
-<p><a href="/stores/new" style="margin-right: 50px;"> New Store </a>     <a href="/stores/by_books"> Sort Stores by Number of Books </a> </p>
+<a href="/stores"> Back to Store Index </a>
 
 </body>

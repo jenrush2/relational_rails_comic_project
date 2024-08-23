@@ -31,6 +31,10 @@ class StoresController < ApplicationController
         redirect_to '/stores'
     end
 
+    def sorted_index
+        @stores_by_books = Store.sort_by_number_of_books
+    end
+
     private
         def store_params
             params.permit(:city, :open, :income_rank)

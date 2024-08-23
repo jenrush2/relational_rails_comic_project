@@ -11,6 +11,17 @@ RSpec.describe "store index page", type: :feature do
         @store_3 = Store.create!(city: "Castle Rock", open: false, income_rank: 5)
         @store_4 = Store.create!(city: "Colorado Springs", open: true, income_rank: 3)
         @store_5 = Store.create!(city: "Crested Butte", open: false, income_rank: 4)
+
+        @book_1 = @store_1.books.create!(name: "In the Beginning", series: "Dark Knights of Steel", volume: 1, on_display: false)
+        @book_2 = @store_1.books.create!(name: "Distant Thunder", series: "Dark Knights of Steel", volume: 2, on_display: false)
+        @book_3 = @store_4.books.create!(name: "The Long Way Home: Part I", series: "Buffy: Season 8", volume: 1, on_display: true)
+        @book_4 = @store_4.books.create!(name: "The Long Way Home: Part II", series: "Buffy: Season 8", volume: 2, on_display: true)
+        @book_5 = @store_2.books.create!(name: "The Long Way Home: Part III", series: "Buffy: Season 8", volume: 3, on_display: false)
+        @book_6 = @store_2.books.create!(name: "The Long Way Home: Part IV", series: "Buffy: Season 8", volume: 4, on_display: true)
+        @book_7 = @store_3.books.create!(name: "The Gathering Storm", series: "Dark Knights of Steel", volume: 3, on_display: true)
+        @book_8 = @store_4.books.create!(name: "The Chain", series: "Buffy: Season 8", volume: 5, on_display: false)
+        @book_9 = @store_4.books.create!(name: "Another Book", series: "Buffy: Season 8", volume: 6, on_display: true)
+        
     
     end
     
@@ -59,7 +70,7 @@ RSpec.describe "store index page", type: :feature do
         expect(page).to have_current_path('/books')
     end
 
-    it 'has a link next to each store to edit' do
+    it 'has a button next to each store to edit' do
         #store 1
         visit "/stores"
     
@@ -95,5 +106,31 @@ RSpec.describe "store index page", type: :feature do
 
         expect(page).to have_current_path("/stores/#{@store_5.id}/edit")
     end
+
+    it 'has a link to sort parents by number of books' do
+        visit "/stores"
+      
+        expect(page).to have_link('Sort Stores by Number of Books', href: '/stores/by_books')
+
+        click_link(href: '/stores/by_books')
+
+        expect(page).to have_current_path('/stores/by_books')
+
+        #test that stores are ordered by number of books, highest to lowest
+        expect('Colorado Springs').to appear_before('Aurora')
+        expect('Aurora').to appear_before('Denver')
+        expect('Denver').to appear_before('Castle Rock')
+        expect('Castle Rock').to appear_before('Crested Butte')
+        
+        #test that you see the number of books next to each store name
+        expect(page.first('h3')).to have_content(@store_4.books.length)
+        expect(page.first('h3')).not_to have_content(@store_1.books.length)
+
+        #test that there is a link to get back to the normal index page
+        click_link(href: '/stores')
+
+        expect(page).to have_current_path('/stores')
+    end
+
 
 end
