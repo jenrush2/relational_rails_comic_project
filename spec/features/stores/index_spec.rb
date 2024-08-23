@@ -107,6 +107,15 @@ RSpec.describe "store index page", type: :feature do
         expect(page).to have_current_path("/stores/#{@store_5.id}/edit")
     end
 
+
+#Extension 1: Sort Parents by Number of Children 
+# As a visitor
+# When I visit the Parents Index Page
+# Then I see a link to sort parents by the number of `child_table_name` they have
+# When I click on the link
+# I'm taken back to the Parent Index Page where I see all of the parents in order of 
+# their count of `child_table_name` (highest to lowest) And, I see the number of 
+# children next to each parent name
     it 'has a link to sort parents by number of books' do
         visit "/stores"
       
