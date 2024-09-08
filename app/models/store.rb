@@ -14,10 +14,7 @@ class Store < ApplicationRecord
     end
 
     def self.sort_by_number_of_books
-        #working on a joins method to complete this,
-        #but haven't actually done the joins lesson
-        #Store.joins(:books).sort_by(books.length :desc)
-        Store.all.sort{|a,b| b.books.length <=> a.books.length}
+        Store.all.sort{|a,b| b.books.length <=> a.books.length}  
     end
 
 end
