@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Store, type: :model do
     it {should have_many :books}
+    it {should validate_presence_of(:city)}
+    it {should validate_presence_of(:income_rank)}
+    it {should validate_numericality_of(:income_rank)}
 
 
     before(:each) do
