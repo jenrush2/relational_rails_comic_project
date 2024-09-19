@@ -10,8 +10,14 @@ class StoreBooksController < ApplicationController
 
     def create
         @store = Store.find(params[:store_id])
-        @store.books.create(book_params)
-        redirect_to "/stores/#{@store.id}/books"
+        @book = @store.books.new(book_params)
+
+        if @book.save
+            redirect_to "/stores/#{@store.id}/books"
+        else
+            flash[:notice] = "Book not created: Required information missing."
+            render :new
+        end
     end
 
     private

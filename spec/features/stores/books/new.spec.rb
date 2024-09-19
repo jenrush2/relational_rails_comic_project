@@ -41,4 +41,46 @@ RSpec.describe 'New Book in a Store' do
 
     end
 
+    it "can not create a new book with missing name" do
+        visit "/stores/#{@store_3.id}/books/new"
+        
+        #fill_in "Name", with: "No More Lonely Knights"
+        fill_in "Series", with: "Dark Knights of Steel"
+        fill_in "Volume", with: 4
+        select "No", :from => 'On display'
+
+        click_button('Create Book')
+        
+        expect(page).to have_content("Book not created: Required information missing.")
+        expect(page).to have_button("Create Book")
+    end
+
+    it "can not create a new book with missing series" do
+        visit "/stores/#{@store_3.id}/books/new"
+        
+        fill_in "Name", with: "No More Lonely Knights"
+        #fill_in "Series", with: "Dark Knights of Steel"
+        fill_in "Volume", with: 4
+        select "No", :from => 'On display'
+
+        click_button('Create Book')
+        
+        expect(page).to have_content("Book not created: Required information missing.")
+        expect(page).to have_button("Create Book")
+    end
+
+    it "can not create a new book with missing volume" do
+        visit "/stores/#{@store_3.id}/books/new"
+        
+        fill_in "Name", with: "No More Lonely Knights"
+        fill_in "Series", with: "Dark Knights of Steel"
+        #fill_in "Volume", with: 4
+        select "No", :from => 'On display'
+
+        click_button('Create Book')
+        
+        expect(page).to have_content("Book not created: Required information missing.")
+        expect(page).to have_button("Create Book")
+    end
+
 end

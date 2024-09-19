@@ -4,7 +4,7 @@
 
 <br>
 
-<%= form_with url: "/stores/#{@store.id}/books", method: :post, local: true do |form| %>
+<%= form_with url: "/stores/#{@store.id}/books", method: :post, data: {turbo:false}, local: true do |form| %>
     <%= form.label :name %>
     <%= form.text_field :name %>
     <br>
