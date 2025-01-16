@@ -1,24 +1,17 @@
-# README
+## Relational Rails Comic Book Store CRUD
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project is from the Turing backend program's open course ware, Module 2. I completed it in August, 2024. 
 
-Things you may want to cover:
+Run tests using bundle exec rspec
 
-* Ruby version
+There is a seeds.rb file if you want to populate some starting stores and books.
 
-* System dependencies
+Use rails s to start run on a localhost.
 
-* Configuration
+Use
+    /stores 
+    /books
+to see the main index pages, then follow links for CRUD options.
 
-* Database creation
+Visit Turing's project page at https://backend.turing.edu/module2/projects/relational_rails/ for more information on the project instructions.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
