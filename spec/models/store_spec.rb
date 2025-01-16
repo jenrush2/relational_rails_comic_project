@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Store, type: :model do
     it {should have_many :books}
+    it {should validate_presence_of(:city)}
+    it {should validate_presence_of(:income_rank)}
+    it {should validate_numericality_of(:income_rank)}
 
 
     before(:each) do
@@ -14,13 +17,15 @@ RSpec.describe Store, type: :model do
 
         @book_1 = @store_1.books.create!(name: "In the Beginning", series: "Dark Knights of Steel", volume: 1, on_display: false)
         @book_2 = @store_1.books.create!(name: "Distant Thunder", series: "Dark Knights of Steel", volume: 2, on_display: false)
-        @book_3 = @store_1.books.create!(name: "The Long Way Home: Part I", series: "Buffy: Season 8", volume: 1, on_display: true)
-        @book_4 = @store_2.books.create!(name: "The Long Way Home: Part II", series: "Buffy: Season 8", volume: 2, on_display: true)
-        @book_5 = @store_3.books.create!(name: "The Long Way Home: Part III", series: "Buffy: Season 8", volume: 3, on_display: false)
-        @book_6 = @store_3.books.create!(name: "The Long Way Home: Part IV", series: "Buffy: Season 8", volume: 4, on_display: true)
-        @book_7 = @store_4.books.create!(name: "The Gathering Storm", series: "Dark Knights of Steel", volume: 3, on_display: true)
-        @book_8 = @store_5.books.create!(name: "The Chain", series: "Buffy: Season 8", volume: 5, on_display: false)
+        @book_3 = @store_4.books.create!(name: "The Long Way Home: Part I", series: "Buffy: Season 8", volume: 1, on_display: true)
+        @book_4 = @store_4.books.create!(name: "The Long Way Home: Part II", series: "Buffy: Season 8", volume: 2, on_display: true)
+        @book_5 = @store_2.books.create!(name: "The Long Way Home: Part III", series: "Buffy: Season 8", volume: 3, on_display: false)
+        @book_6 = @store_2.books.create!(name: "The Long Way Home: Part IV", series: "Buffy: Season 8", volume: 4, on_display: true)
+        @book_7 = @store_3.books.create!(name: "The Gathering Storm", series: "Dark Knights of Steel", volume: 3, on_display: true)
+        @book_8 = @store_4.books.create!(name: "The Chain", series: "Buffy: Season 8", volume: 5, on_display: false)
+        @book_9 = @store_4.books.create!(name: "Another Book", series: "Buffy: Season 8", volume: 6, on_display: true)
         
+
     end
 
     describe 'class methods' do
@@ -32,6 +37,10 @@ RSpec.describe Store, type: :model do
                 expect(Store.sort_by_most_recent).to eq([@store_5, @store_4, @store_3, @store_2, @store_1])
             
             end
+
+            it 'sorts stores by the number of books' do
+                expect(Store.sort_by_number_of_books).to eq([@store_4, @store_1, @store_2, @store_3, @store_5])
+            end
         end
 
     end
@@ -41,7 +50,7 @@ RSpec.describe Store, type: :model do
         describe "count the number of books in a store" do
             it "counts the number of books in a store" do
                 expect(@store_1.city).to eq("Aurora")
-                expect(@store_1.book_count).to eq(3)
+                expect(@store_1.book_count).to eq(2)
             end
         end
     end

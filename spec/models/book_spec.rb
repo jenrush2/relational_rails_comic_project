@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Book, type: :model do
     it {should belong_to :store}
+    it {should validate_presence_of(:name)}
+    it {should validate_presence_of(:series)}
+    it {should validate_presence_of(:volume)}
+
 
     before(:each) do
 
